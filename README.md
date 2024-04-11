@@ -1,3 +1,22 @@
+## Place at:定时任务crontab
+# curl https://raw.githubusercontent.com/yulewang/cloudflare-api-v4-ddns/master/cf-v4-ddns.sh > /usr/local/bin/cf-ddns.sh && chmod +x /usr/local/bin/cf-ddns.sh
+## run `crontab -e` and add next line:运行 `crontab -e` 并添加下一行：
+# */1 * * * * /usr/local/bin/cf-ddns.sh >/dev/null 2>&1
+## or you need log:或者你需要日志：
+# */1 * * * * /usr/local/bin/cf-ddns.sh >> /var/log/cf-ddns.log 2>&1
+
+
+# Usage:
+# cf-ddns.sh -k cloudflare-api-key \   # 【Global API Key】API key, 获取地址 https://www.cloudflare.com/a/account/my-account
+#            -u user@example.com \     # email@example.com 即CF的登录邮箱
+#            -h host.example.com \     # fqdn of the record you want to update  # 要更新的记录的 FQDN
+#            -z example.com \          # will show you all zones if forgot, but you need this # 如果忘记的话会显示所有区域，但你需要这个
+#            -t A|AAAA                 # specify ipv4/ipv6, default: ipv4 # 指定ipv4/ipv6，默认：ipv4
+
+# Optional flags:
+#            -f false|true \           # force dns update, disregard local stored ip #强制更新 DNS，忽略本地存储的 IP
+
+
 Cloudflare API v4 Dynamic DNS Update in Bash, without unnecessary requests
 Now the script also supports v6(AAAA DDNS Recoards)
 
