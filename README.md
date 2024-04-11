@@ -25,10 +25,8 @@ Now the script also supports v6(AAAA DDNS Recoards)
 
 
 下载 DDNS 脚本cf-v4-ddns.sh
-
-'
 wget -N --no-check-certificate https://raw.githubusercontent.com/yulewang/cloudflare-api-v4-ddns/master/cf-v4-ddns.sh
-'
+
 
 修改 DDNS 脚本并填写相关信息
 您可在线使用 nano/vi/vim 等工具进行修改，也可以下载到本地进行修改再上传覆盖！
@@ -41,7 +39,6 @@ vi cf-v4-ddns.sh
 
 
 ---------修改参数---------
-'
 
 CFKEY=【Global API Key】
 
@@ -64,17 +61,18 @@ CFZONE=example.com
 CFHOST=ddns.yourdomain.com
 
 填写用来DDNS解析的二级域名，与上面设置的要一致, eg: ddns.yourdomain.com（例 ddns.123.com）
-'
 
 ---------修改参数---------
+
+
 
 全部填写完毕后按左上角的Esc退出编辑模式，然后输入 :wq 它会自动保存并退出
 
 脚本授权并执行
-'
+
 +x cf-v4-ddns.sh
 ./cf-v4-ddns.sh
-'
+
 
 如果脚本相关信息填写正确，输出内容会显示当前母鸡IP，登录 Cloudflare DNS选项 查看之前设置的 1.1.1.1 已变为母鸡IP
 
