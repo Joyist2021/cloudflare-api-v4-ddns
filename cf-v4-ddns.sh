@@ -6,50 +6,50 @@ set -o pipefail
 # Automatically update your CloudFlare DNS record to the IP, Dynamic DNS
 # Can retrieve cloudflare Domain id and list zone's, because, lazy
 
-# Place at:
+## Place at:定时任务crontab
 # curl https://raw.githubusercontent.com/yulewang/cloudflare-api-v4-ddns/master/cf-v4-ddns.sh > /usr/local/bin/cf-ddns.sh && chmod +x /usr/local/bin/cf-ddns.sh
-# run `crontab -e` and add next line:
+## run `crontab -e` and add next line:运行 `crontab -e` 并添加下一行：
 # */1 * * * * /usr/local/bin/cf-ddns.sh >/dev/null 2>&1
-# or you need log:
+## or you need log:或者你需要日志：
 # */1 * * * * /usr/local/bin/cf-ddns.sh >> /var/log/cf-ddns.log 2>&1
 
 
 # Usage:
-# cf-ddns.sh -k cloudflare-api-key \
-#            -u user@example.com \
-#            -h host.example.com \     # fqdn of the record you want to update
-#            -z example.com \          # will show you all zones if forgot, but you need this
-#            -t A|AAAA                 # specify ipv4/ipv6, default: ipv4
+# cf-ddns.sh -k cloudflare-api-key \   # 【Global API Key】API key, 获取地址 https://www.cloudflare.com/a/account/my-account
+#            -u user@example.com \     # email@example.com 即CF的登录邮箱
+#            -h host.example.com \     # fqdn of the record you want to update  # 要更新的记录的 FQDN
+#            -z example.com \          # will show you all zones if forgot, but you need this # 如果忘记的话会显示所有区域，但你需要这个
+#            -t A|AAAA                 # specify ipv4/ipv6, default: ipv4 # 指定ipv4/ipv6，默认：ipv4
 
 # Optional flags:
-#            -f false|true \           # force dns update, disregard local stored ip
+#            -f false|true \           # force dns update, disregard local stored ip #强制更新 DNS，忽略本地存储的 IP
 
 # default config
 
 # API key, see https://www.cloudflare.com/a/account/my-account,
 # incorrect api-key results in E_UNAUTH error
-CFKEY=
+CFKEY=              #这里填写上一步获取的【Global API Key】API密钥, 获取地址 https://www.cloudflare.com/a/account/my-account
 
 # Username, eg: user@example.com
-CFUSER=
+CFUSER=              #登陆CF的Username, eg: [email protected](即CF的登录邮箱)
 
 # Zone name, eg: example.com
-CFZONE_NAME=
+CFZONE_NAME=              #需要解析用来DDNS解析的根域名,例 123.com
 
 # Hostname to update, eg: homeserver.example.com
-CFRECORD_NAME=
+CFRECORD_NAME=              #DDNS解析的二级域名,例 ddns.123.com
 
 # Record type, A(IPv4)|AAAA(IPv6), default IPv4
-CFRECORD_TYPE=A
+CFRECORD_TYPE=A              # 指定ipv4/ipv6，默认：ipv4
 
 # Cloudflare TTL for record, between 120 and 86400 seconds
 CFTTL=120
 
-# Ignore local file, update ip anyway
+# Ignore local file, update ip anyway #忽略本地文件，无论如何更新ip
 FORCE=false
 
 WANIPSITE="http://ipv4.icanhazip.com"
-
+# 检索 WAN IP 的站点，其他示例包括：bot.whatismyipaddress.com、https://api.ipify.org/ ...
 # Site to retrieve WAN ip, other examples are: bot.whatismyipaddress.com, https://api.ipify.org/ ...
 if [ "$CFRECORD_TYPE" = "A" ]; then
   :
