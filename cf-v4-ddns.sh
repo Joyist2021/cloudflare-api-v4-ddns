@@ -3,8 +3,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-# Automatically update your CloudFlare DNS record to the IP, Dynamic DNS
-# Can retrieve cloudflare Domain id and list zone's, because, lazy
+# Automatically update your CloudFlare DNS record to the IP, Dynamic DNS # 自动将您的 CloudFlare DNS 记录更新为 IP、动态 DNS
+# Can retrieve cloudflare Domain id and list zone's, because, lazy # 可以检索 cloudflare 域 id 并列出区域，因为懒
 
 ## Place at:定时任务crontab
 # curl https://raw.githubusercontent.com/yulewang/cloudflare-api-v4-ddns/master/cf-v4-ddns.sh > /usr/local/bin/cf-ddns.sh && chmod +x /usr/local/bin/cf-ddns.sh
