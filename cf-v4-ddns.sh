@@ -27,7 +27,7 @@ set -o pipefail
 # default config
 
 # API key, see https://www.cloudflare.com/a/account/my-account,
-# incorrect api-key results in E_UNAUTH error
+# incorrect api-key results in E_UNAUTH error #不正确的 api-key 会导致 E_UNAUTH 错误
 CFKEY=              #这里填写上一步获取的【Global API Key】API密钥, 获取地址 https://www.cloudflare.com/a/account/my-account
 
 # Username, eg: user@example.com
